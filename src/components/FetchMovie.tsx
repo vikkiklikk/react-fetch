@@ -142,7 +142,11 @@ const FetchMovie: React.FC = () => {
               handleCardClick("", "");
             }}
           >
-            <FetchDescription title={movieTitle} id={movieID} />
+            <FetchDescription
+              title={movieTitle}
+              id={movieID}
+              action={showMovieInfo}
+            />
           </div>
           <div className="flex flex-wrap gap-4 justify-center box-border">
             {movies.length > 0 ? (
