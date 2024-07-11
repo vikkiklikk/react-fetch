@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios, { AxiosRequestConfig } from "axios";
+import { FaImdb } from "react-icons/fa";
 
 const apiKey = import.meta.env.VITE_TMDB_API;
 const bearerToken = import.meta.env.VITE_TMDB_BEARER_TOKEN;
@@ -12,11 +13,19 @@ type MovieDescription = {
 
 type FetchDescriptionProps = {
   title: string;
+  id: string;
+  action: boolean;
 };
 
-const FetchDescription: React.FC<FetchDescriptionProps> = ({ title }) => {
+const FetchDescription: React.FC<FetchDescriptionProps> = ({
+  title,
+  id,
+  action,
+}) => {
   const [movieDescription, setMovieDescription] =
     useState<MovieDescription | null>(null);
+  const imdbLink = `https://www.imdb.com/title/${id}/`;
+  console.log(action);
 
   useEffect(() => {
     const fetchDescription = async () => {
@@ -69,8 +78,13 @@ const FetchDescription: React.FC<FetchDescriptionProps> = ({ title }) => {
           backgroundImage: `url(https://media.themoviedb.org/t/p/w1920_and_h800_multi_faces/${movieDescription.backdrop_path})`,
         }}
       >
-        <div className="max-w-[400px] min-h-[200px] shadow-md rounded-lg p-4 bg-slate-300">
-          <p className="z-20">{movieDescription.overview}</p>
+        <div className="flex justify-between">
+          <div className="max-w-[400px] min-h-[200px] shadow-md rounded-lg p-4 bg-slate-300">
+            <p className="z-20">{movieDescription.overview}</p>
+          </div>
+          <a href={imdbLink} target="_blank">
+            <FaImdb size={50} color="white" />
+          </a>
         </div>
       </div>
     </>

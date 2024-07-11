@@ -14,12 +14,21 @@ body {
     to {
       opacity: 1;
     }
-  }
-  
-  .animate-slideIn {
-    animation: slideIn 1.5s forwards;
-  }
+}
 
-  .animate-slideOut {
+@keyframes slideOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+.animate-slideIn {
+    animation: slideIn 1.5s forwards;
+    }
+
+.animate-slideOut {
     animation: slideOut 1.5s backwards;
-  }
+    }

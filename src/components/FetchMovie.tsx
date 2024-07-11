@@ -68,13 +68,15 @@ const FetchMovie: React.FC = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
   const [showMovieInfo, setShowMovieInfo] = useState(false);
   const [movieTitle, setMovieTitle] = useState<string>("");
+  const [movieID, setMovieID] = useState<string>("");
 
-  const handleCardClick = (title: string) => {
+  const handleCardClick = (title: string, id: string) => {
     console.log("Clicked");
     if (!showMovieInfo) {
       setShowMovieInfo(true);
       setMovieTitle(title);
-      console.log(movieTitle);
+      setMovieID(id);
+      console.log(movieTitle, id);
       window.scrollTo({ top: 0, behavior: "smooth" });
     } else setShowMovieInfo(false);
   };
@@ -111,21 +113,21 @@ const FetchMovie: React.FC = () => {
             movies.map((movie) => (
               <div
                 key={movie.Title}
-                className="bg-[#f0f0f0] h-[420px] w-full sm:w-[300px] overflow-hidden rounded-md box-border cursor-pointer ${
-        isExpanded ? 'w-[00px]' : ''
-      }`}"
+                className="bg-[#f0f0f0] h-[450px] lg:w-[250px] sm:w-[300px] overflow-hidden rounded-md box-border cursor-pointer"
                 onClick={() => {
-                  console.log(movie.Title);
-                  handleCardClick(movie.Title);
+                  console.log(movie.Title, movie.imdbID);
+                  handleCardClick(movie.Title, movie.imdbID);
                 }}
               >
                 <img
-                  className="h-4/5 w-full hover:scale-125 hover:translate-y-[42px] transition ease-in-out duration-500"
+                  className="h-4/5 w-full hover:scale-125 hover:translate-y-[45px] transition ease-in-out duration-500"
                   src={movie.Poster}
                 />
                 <div className="flex-col pl-2 pt-2">
-                  <h1 className="text-xl">{movie.Title}</h1>
-                  <p className="italic">IMDB Rating: {movie.imdbRating}</p>
+                  <h1 className="text-xl font-noto">{movie.Title}</h1>
+                  <p className="italic font-noto">
+                    IMDB Rating: {movie.imdbRating}
+                  </p>
                 </div>
               </div>
             ))
@@ -137,25 +139,23 @@ const FetchMovie: React.FC = () => {
         <>
           <div
             onClick={() => {
-              handleCardClick("");
+              handleCardClick("", "");
             }}
           >
-            <FetchDescription title={movieTitle} />
+            <FetchDescription title={movieTitle} id={movieID} />
           </div>
           <div className="flex flex-wrap gap-4 justify-center box-border">
             {movies.length > 0 ? (
               movies.map((movie) => (
                 <div
                   key={movie.imdbID}
-                  className="bg-slate-300 h-[420px] w-full sm:w-[300px] overflow-hidden rounded-md box-border cursor-pointer ${
-        isExpanded ? 'w-[00px]' : ''
-      }`}"
+                  className="bg-slate-300 h-[450px] lg:w-[250px] sm:w-[300px] overflow-hidden rounded-md box-border cursor-pointer"
                   onClick={() => {
-                    handleCardClick(movie.Title);
+                    handleCardClick(movie.Title, movie.imdbID);
                   }}
                 >
                   <img
-                    className="h-4/5 w-full hover:scale-125 hover:translate-y-[42px] transition ease-in-out duration-500"
+                    className="h-4/5 w-full hover:scale-125 hover:translate-y-[45px] transition ease-in-out duration-500"
                     src={movie.Poster}
                   />
                   <div className="flex-col pl-2 pt-2">
