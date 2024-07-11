@@ -1,0 +1,25 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #613b34;
+}
+
+@keyframes slideIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  .animate-slideIn {
+    animation: slideIn 1.5s forwards;
+  }
+
+  .animate-slideOut {
+    animation: slideOut 1.5s backwards;
+  }
