@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import FetchDescription from "./FetchDescription";
+import { Skeleton } from "./ui/skeleton";
 
 const apiKey = import.meta.env.VITE_OMDB_API;
 
@@ -83,6 +84,7 @@ const FetchMovie: React.FC = () => {
 
   useEffect(() => {
     const fetchMovies = async () => {
+      await new Promise((resolve) => setTimeout(resolve, 1000));
       try {
         const fetchedMovies = await Promise.all(
           top250MovieIds.map(async (id) => {
@@ -113,7 +115,7 @@ const FetchMovie: React.FC = () => {
             movies.map((movie) => (
               <div
                 key={movie.Title}
-                className="bg-[#f0f0f0] h-[450px] lg:w-[250px] sm:w-[300px] overflow-hidden rounded-md box-border cursor-pointer"
+                className="bg-[#613b34] h-[450px] lg:w-[250px] sm:w-[300px] overflow-hidden rounded-md box-border cursor-pointer text-white"
                 onClick={() => {
                   console.log(movie.Title, movie.imdbID);
                   handleCardClick(movie.Title, movie.imdbID);
@@ -132,7 +134,19 @@ const FetchMovie: React.FC = () => {
               </div>
             ))
           ) : (
-            <p>Loading...</p>
+            <div className="flex flex-wrap gap-4 justify-center box-border">
+              <Skeleton className="h-[450px] lg:w-[250px] rounded-md" />
+              <Skeleton className="h-[450px] lg:w-[250px] rounded-md" />
+              <Skeleton className="h-[450px] lg:w-[250px] rounded-md" />
+              <Skeleton className="h-[450px] lg:w-[250px] rounded-md" />
+              <Skeleton className="h-[450px] lg:w-[250px] rounded-md" />
+              <Skeleton className="h-[450px] lg:w-[250px] rounded-md" />
+              <Skeleton className="h-[450px] lg:w-[250px] rounded-md" />
+              <Skeleton className="h-[450px] lg:w-[250px] rounded-md" />
+              <Skeleton className="h-[450px] lg:w-[250px] rounded-md" />
+              <Skeleton className="h-[450px] lg:w-[250px] rounded-md" />
+              <Skeleton className="h-[450px] lg:w-[250px] rounded-md" />
+            </div>
           )}
         </div>
       ) : (
@@ -153,7 +167,7 @@ const FetchMovie: React.FC = () => {
               movies.map((movie) => (
                 <div
                   key={movie.imdbID}
-                  className="bg-slate-300 h-[450px] lg:w-[250px] sm:w-[300px] overflow-hidden rounded-md box-border cursor-pointer"
+                  className="bg-[#613b34] h-[450px] lg:w-[250px] sm:w-[300px] overflow-hidden rounded-md box-border cursor-pointer text-white"
                   onClick={() => {
                     handleCardClick(movie.Title, movie.imdbID);
                   }}
@@ -169,7 +183,9 @@ const FetchMovie: React.FC = () => {
                 </div>
               ))
             ) : (
-              <p>Loading...</p>
+              <div className="flex justify-center items-center">
+                <Skeleton className="w-[300px] h-[450px] rounded-full" />
+              </div>
             )}
           </div>
         </>

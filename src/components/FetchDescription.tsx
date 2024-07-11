@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios, { AxiosRequestConfig } from "axios";
 import { FaImdb } from "react-icons/fa";
+import { CgSpinnerAlt } from "react-icons/cg";
 
 const apiKey = import.meta.env.VITE_TMDB_API;
 const bearerToken = import.meta.env.VITE_TMDB_BEARER_TOKEN;
@@ -29,6 +30,7 @@ const FetchDescription: React.FC<FetchDescriptionProps> = ({
 
   useEffect(() => {
     const fetchDescription = async () => {
+      await new Promise((resolve) => setTimeout(resolve, 1000));
       const options: AxiosRequestConfig = {
         method: "GET",
         url: `https://api.themoviedb.org/3/search/movie`,
@@ -67,19 +69,23 @@ const FetchDescription: React.FC<FetchDescriptionProps> = ({
   }, [title]);
 
   if (!movieDescription) {
-    return <div>Loading...</div>;
+    return (
+      <div className="flex justify-center items-center">
+        <CgSpinnerAlt className="text-6xl animate-spin" color="black" />
+      </div>
+    );
   }
 
   return (
     <>
       <div
-        className="flex-col gap-4 bg-slate-300 p-4 rounded-md shadow-lg transition-all duration-500 animate-slideIn mb-4 left-[500px] bg-cover bg-center cursor-pointer"
+        className="flex-col gap-4 p-4 rounded-md shadow-lg transition-all duration-500 animate-slideIn mb-4 left-[500px] bg-cover bg-center cursor-pointer"
         style={{
           backgroundImage: `url(https://media.themoviedb.org/t/p/w1920_and_h800_multi_faces/${movieDescription.backdrop_path})`,
         }}
       >
         <div className="flex justify-between">
-          <div className="max-w-[400px] min-h-[200px] shadow-md rounded-lg p-4 bg-slate-300">
+          <div className="max-w-[400px] min-h-[200px] shadow-md rounded-lg p-4 bg-slate-500">
             <p className="z-20">{movieDescription.overview}</p>
           </div>
           <a href={imdbLink} target="_blank">
