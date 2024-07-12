@@ -71,7 +71,7 @@ const FetchDescription: React.FC<FetchDescriptionProps> = ({
   if (!movieDescription) {
     return (
       <div className="flex justify-center items-center">
-        <CgSpinnerAlt className="text-6xl animate-spin" color="black" />
+        <CgSpinnerAlt className="text-6xl animate-spin" color="white" />
       </div>
     );
   }
