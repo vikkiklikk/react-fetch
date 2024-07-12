@@ -9,7 +9,7 @@ function App() {
       <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
         {/* Page container */}
         <div className="w-full max-w-[1366px] flex flex-col items-center pt-8 px-4">
-          <header className="w-full text-white p-4 fixed top-0 left-0 z-10 shadow-lg">
+          <header className="w-full text-white p-4 fixed top-0 left-0 z-10 shadow-md shadow-slate-800 dark:shadow-slate-700">
             {/* Background image with dark filter */}
             <div
               className="absolute inset-0 bg-cover bg-center"
@@ -23,7 +23,7 @@ function App() {
 
             {/* Content within the header */}
             <div className="relative z-20 text-center">
-              <h1 className=" text-slate-100 font-noto tracking-wide lg:text-7xl md:text-5xl sm:text-5xl font-bold uppercase">
+              <h1 className=" text-slate-100 font-noto tracking-wide lg:text-7xl md:text-5xl sm:text-5xl font-bold uppercase pt-6">
                 Movie descriptions
               </h1>
               <p className="text-slate-300 uppercase mt-8 lg:text-xl md:text-lg">
@@ -45,7 +45,7 @@ function App() {
               href="https://github.com/vikkiklikk"
               className="hover:text-white transition-colors duration-300 ease-in-out"
             >
-              <small>Vikki Klikk 2024</small>
+              <small className="animate-pulse">Vikki Klikk 2024</small>
             </a>{" "}
             <small>Vefskólinn</small>
           </footer>

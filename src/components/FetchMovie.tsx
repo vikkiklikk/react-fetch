@@ -115,21 +115,18 @@ const FetchMovie: React.FC = () => {
             movies.map((movie) => (
               <div
                 key={movie.Title}
-                className="bg-[#613b34] h-[450px] lg:w-[250px] sm:w-[300px] overflow-hidden rounded-md box-border cursor-pointer text-white"
+                className="bg-card h-[450px] lg:w-[250px] sm:w-[300px] hover:z-40 mt-16 rounded-md box-border cursor-pointer text-white hover:skew-x-4 hover:skew-y-1 shadow-md hover:rotate-8  hover:brightness-125  transition-all hover:translate-x-4 duration-1000 hover:-translate-y-4 ease-in-out"
                 onClick={() => {
                   console.log(movie.Title, movie.imdbID);
                   handleCardClick(movie.Title, movie.imdbID);
                 }}
               >
                 <img
-                  className="h-4/5 w-full hover:scale-125 hover:translate-y-[45px] transition ease-in-out duration-500"
+                  className="h-4/5 w-full hover:scale-[125%] hover:translate-y-[38px] brightness-95 transition overflow-x-clip ease-in-out rounded-md duration-500 hover:shadow-2xl hover:shadow-black dark:hover:shadow-slate-400"
                   src={movie.Poster}
                 />
                 <div className="flex-col pl-2 pt-2">
-                  <h1 className="text-xl font-noto">{movie.Title}</h1>
-                  <p className="italic font-noto">
-                    IMDB Rating: {movie.imdbRating}
-                  </p>
+                  <h1 className="text-xl font-noto pb-2">{movie.Title}</h1>
                 </div>
               </div>
             ))
@@ -166,19 +163,19 @@ const FetchMovie: React.FC = () => {
             {movies.length > 0 ? (
               movies.map((movie) => (
                 <div
-                  key={movie.imdbID}
-                  className="bg-[#613b34] h-[450px] lg:w-[250px] sm:w-[300px] overflow-hidden rounded-md box-border cursor-pointer text-white"
+                  key={movie.Title}
+                  className="bg-card h-[450px] lg:w-[250px] sm:w-[300px] hover:z-40 mt-4 rounded-md box-border cursor-pointer text-white hover:skew-x-4 hover:skew-y-1 shadow-md hover:rotate-8  hover:brightness-125  transition-all hover:translate-x-4 duration-1000 hover:-translate-y-4 ease-in-out"
                   onClick={() => {
+                    console.log(movie.Title, movie.imdbID);
                     handleCardClick(movie.Title, movie.imdbID);
                   }}
                 >
                   <img
-                    className="h-4/5 w-full hover:scale-125 hover:translate-y-[45px] transition ease-in-out duration-500"
+                    className="h-4/5 w-full hover:scale-[125%] hover:translate-y-[38px] brightness-95 transition overflow-x-clip ease-in-out rounded-md duration-500 hover:shadow-2xl hover:shadow-black dark:hover:shadow-slate-400"
                     src={movie.Poster}
                   />
                   <div className="flex-col pl-2 pt-2">
-                    <h1 className="text-xl">{movie.Title}</h1>
-                    <p className="italic">IMDB Rating: {movie.imdbRating}</p>
+                    <h1 className="text-xl font-noto pb-2">{movie.Title}</h1>
                   </div>
                 </div>
               ))

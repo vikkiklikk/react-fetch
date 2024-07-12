@@ -79,17 +79,21 @@ const FetchDescription: React.FC<FetchDescriptionProps> = ({
   return (
     <>
       <div
-        className="flex-col gap-4 p-4 rounded-md shadow-lg transition-all duration-500 animate-slideIn mb-4 left-[500px] bg-cover bg-center cursor-pointer"
+        className="flex-col gap-4 p-4 rounded-md shadow-lg shadow-slate-500 transition-all duration-500 animate-slideIn mb-4 mt-6 left-[500px] bg-cover bg-center cursor-pointer dark:shadow-slate-800"
         style={{
           backgroundImage: `url(https://media.themoviedb.org/t/p/w1920_and_h800_multi_faces/${movieDescription.backdrop_path})`,
         }}
       >
         <div className="flex justify-between">
-          <div className="max-w-[400px] min-h-[200px] shadow-md rounded-lg p-4 bg-slate-500">
-            <p className="z-20">{movieDescription.overview}</p>
+          <div className="max-w-[400px] min-h-[200px] rounded-lg p-4 backdrop-blur-[32px]">
+            <p className="z-20 text-white">{movieDescription.overview}</p>
           </div>
           <a href={imdbLink} target="_blank">
-            <FaImdb size={50} color="white" />
+            <FaImdb
+              size={50}
+              color="white"
+              className="shadow-md hover:scale-110 transition duration-700"
+            />
           </a>
         </div>
       </div>
